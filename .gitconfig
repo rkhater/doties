@@ -1,0 +1,81 @@
+[user]
+  name = Ramy Khater
+  email = ramy.m.khater@gmail.com
+[github]
+  user = rkhater
+[core]
+  editor = vi
+[merge]
+  tool = mymeld
+#  conflictstyle = diff3
+[mergetool "mymeld"]
+  cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE --output $MERGED
+  #cmd = meld $LOCAL $BASE $REMOTE --output $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE --auto-merge
+[diff]
+  tool = meld
+  guitool = meld
+[difftool]
+  prompt = false
+[alias]
+  br = branch
+  brv = branch -vv
+  bra = branch -ra
+  brd = branch -d
+  rbr = branch -r
+  co = checkout
+  cob = checkout -b
+  a = add
+  aa = !git add -u && git add . && git stsb
+  am = !git add -u && git stsb
+  ca = commit --amend
+  cm = commit --amend -C HEAD
+  ci = commit 
+  l = log --pretty=oneline
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+  ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  lsnm = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative --no-merges
+  lci = "!sh -c 'git log -n $1 --pretty=format:\"%C(yellow)%H\\ %Creset%s%Cblue\\ [%cn]\" --decorate --graph' -"
+  lcf = "!sh -c 'git show --pretty=\"\" --name-only $1' -"
+  la = "!sh -c 'git log --pretty=format:\"%C(yellow)%h %Creset- %Cblue%an, %Cred%ar : %Creset%s\" --author=\"$1\"' -"
+  mm = merge --no-ff
+  luf = ls-files --others --exclude-standard
+  st = status
+  stuf = status -u
+  stsb = status --short --branch
+  tg = tag -a
+  plo = !git pull origin
+  plr = pull --rebase
+  pho = !git push origin 
+  pu = push --tags
+  ft = fetch
+  fte = fetch -p
+  un = reset --hard HEAD  
+  unc = !git reset --hard HEAD  && git clean -f -d
+  uh = reset --hard HEAD^
+  dmb = "!sh -c 'git branch --merged | grep -v \"\\*\\|master\\|staging\" | xargs -n 1 git branch -d' -"
+  df = diff
+  sl = stash list
+  slg = stash-list
+  slf = stash-list --full
+  ss = stash save
+  sp = stash pop
+  sa = "!sh -c 'git stash apply stash@{$1}' -"
+  sd = "!sh -c 'git stash drop stash@{$1}' -"
+  s = stash
+  sb = stash branch
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[branch]
+  autosetuprebase = always
+[help]
+  autocorrect = -1
+[push]
+  default = simple
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
