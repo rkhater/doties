@@ -1,0 +1,15 @@
+goto_projects(){
+  cd "$HOME/Projects/$@"
+}
+
+
+# This function requires CLOC (“Count Lines of Code”) to be installed.
+# https://github.com/AlDanial/cloc
+cloc-git(){
+  git clone --depth 1 "$@" temp-linecount-repo &&
+  printf "('temp-linecount-repo' will be deleted automatically)\n\n\n" &&
+  cloc temp-linecount-repo &&
+  rm -rf temp-linecount-repo
+}
+
+
