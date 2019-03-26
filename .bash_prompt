@@ -102,7 +102,6 @@ PS1+='->\[${WHITE}\]$(byteize_unicode_icon 📂) \[${CYAN}\]$(p=${PWD/#"$HOME"/\
 # Append git repo current branch if git directory ⎇  = bytes(e2 8e 87 20)
 PS1+="\$(prompt_git \"\[${WHITE}\]$(byteize_unicode_icon ⎇ ) \[${VIOLET}\]\" \"\[${BLUE}\]\")\n"
 # Append prompt sign
-# this part is for iterm2 <--> shell integration "Mac only"
 [[ -s "${HOME}/.iterm2_shell_integration.bash" ]] && PS1=$PS1'\[$(iterm2_prompt_mark)\]'
 PS1=$PS1'\[${WHITE}\]\$ '
 

@@ -5,11 +5,32 @@ goto_projects(){
 
 # This function requires CLOC (“Count Lines of Code”) to be installed.
 # https://github.com/AlDanial/cloc
-cloc-git(){
+cloc-git() {
   git clone --depth 1 "$@" temp-linecount-repo &&
   printf "('temp-linecount-repo' will be deleted automatically)\n\n\n" &&
   cloc temp-linecount-repo &&
   rm -rf temp-linecount-repo
 }
 
+# Calculates curl request time.
+curl_time() {
+    curl -so /dev/null -w "\
+   namelookup:  %{time_namelookup}s\n\
+      connect:  %{time_connect}s\n\
+   appconnect:  %{time_appconnect}s\n\
+  pretransfer:  %{time_pretransfer}s\n\
+     redirect:  %{time_redirect}s\n\
+starttransfer:  %{time_starttransfer}s\n\
+-------------------------\n\
+        total:  %{time_total}s\n" "$@"
+}
 
+10_curl_time() {
+  sum=0
+  avg_time=0
+  for i in {1..10}; do
+    output=$(curl_time "$@")
+    sum=$(echo $output | tail -n 1 | awk '{print $NF}')
+  done
+  echo $sum
+}

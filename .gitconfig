@@ -29,10 +29,11 @@
   am = !git add -u && git stsb
   ca = commit --amend
   cm = commit --amend -C HEAD
-  ci = commit 
+  ci = commit
   l = log --pretty=oneline
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+  lg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+  ldr = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --reverse
   ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
   lsnm = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative --no-merges
   lci = "!sh -c 'git log -n $1 --pretty=format:\"%C(yellow)%H\\ %Creset%s%Cblue\\ [%cn]\" --decorate --graph' -"
@@ -46,11 +47,12 @@
   tg = tag -a
   plo = !git pull origin
   plr = pull --rebase
-  pho = !git push origin 
+  pho = !git push origin
   pu = push --tags
   ft = fetch
   fte = fetch -p
-  un = reset --hard HEAD  
+  fta = fetch --all
+  un = reset --hard HEAD
   unc = !git reset --hard HEAD  && git clean -f -d
   uh = reset --hard HEAD^
   dmb = "!sh -c 'git branch --merged | grep -v \"\\*\\|master\\|staging\" | xargs -n 1 git branch -d' -"
@@ -76,6 +78,6 @@
   default = simple
 [filter "lfs"]
   clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
   required = true
